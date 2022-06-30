@@ -4,6 +4,7 @@ package com.example.finalproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,7 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+import java.time.Instant;
 
 public class CalScreen extends AppCompatActivity {
     private CalendarView calView;
@@ -21,6 +22,18 @@ public class CalScreen extends AppCompatActivity {
     private EditText calTextEdit;
     private SQLiteDatabase sqLiteDatabase;
     private TextView displayPd;
+    private String symptoms;
+
+
+ //   Bundle bundle = getIntent().getExtras();
+
+
+
+    //get current time
+
+    @SuppressLint("NewApi")
+    long millis = Instant.now().toEpochMilli();
+
 
     //To keep track of activity in calender
     public static final String TAG ="MainActivity";
@@ -37,11 +50,12 @@ public class CalScreen extends AppCompatActivity {
         calView = findViewById(R.id.Cal_View);
         displayPd = findViewById(R.id.data_display);
 
-        /*
-        from calender class
-         */
-        calView.setDate(1463918226920L);
         calTextEdit = findViewById(R.id.cal_TextEdit);
+        calView.setDate(millis);
+
+       // symptoms = bundle.getString(MainActivity.DATE_DATA);
+
+
 
 
         //adding an event to the database (either period day or symptoms)
@@ -89,7 +103,11 @@ public class CalScreen extends AppCompatActivity {
 
         }
 
+
+
         public void ReadDatabase(View view){
+
+          // symptoms= bundle.getString(MainActivity.DATE_DATA);
 
             Log.d(TAG,"start of ReadDataBase");
             String query = "Select Event from PdCalender where Date = "+dateSelected;
@@ -104,7 +122,7 @@ public class CalScreen extends AppCompatActivity {
 
                 Log.d(TAG,"ReadDataBase exception");
                 e.printStackTrace();
-                displayPd.setText("Today: Period");
+                displayPd.setText(dateSelected+ ": Period \nSymptoms: " + symptoms);
             }
 
 

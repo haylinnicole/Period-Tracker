@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="heading_text_size">40sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="checkWidth">160dp</dimen>
+    <dimen name="checkHeight">49dp</dimen>
+    <dimen name="nestLinearMarginLeft">32dp</dimen>
+    <dimen name="markyourdata">23sp</dimen>
+</resources>

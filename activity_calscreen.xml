@@ -13,12 +13,14 @@
        android:id="@+id/myData"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_marginLeft="105dp"
-       android:layout_marginTop="48dp"
+       android:layout_marginLeft="80dp"
+       android:layout_marginTop="23dp"
+
        android:gravity="center_horizontal"
        android:text="MyCalender"
        android:textColor="@color/white"
-       android:textSize="@dimen/markyourdata" />
+       android:textSize="48dp"
+       android:textStyle="bold" />
 
    <CalendarView
        android:id="@+id/Cal_View"
@@ -45,16 +47,22 @@
        android:minHeight="48dp" />
 
 
-
    <TextView
        android:id="@+id/data_display"
        android:layout_width="match_parent"
-       android:layout_height="167dp"
+       android:layout_height="66dp"
        android:minHeight="48dp"
        android:text="Pick a date!"
        android:textColor="@color/design_default_color_primary_dark"
        android:textSize="25dp"
-       android:textStyle="italic" />
+       android:textStyle="bold"
+       android:textColorHint="@color/white"/>
+
+   <Button
+       android:id="@+id/cal_home"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="home" />
 
 
 </LinearLayout>

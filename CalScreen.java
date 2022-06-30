@@ -5,12 +5,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.database.Cursor;
 import android.content.ContentValues;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +25,8 @@ public class CalScreen extends AppCompatActivity {
     private SQLiteDatabase sqLiteDatabase;
     private TextView displayPd;
     private String symptoms;
+    private Button updateCal;
+    private Button calHome;
 
 
  //   Bundle bundle = getIntent().getExtras();
@@ -53,7 +57,26 @@ public class CalScreen extends AppCompatActivity {
         calTextEdit = findViewById(R.id.cal_TextEdit);
         calView.setDate(millis);
 
+        calHome=findViewById(R.id.cal_home);
+        updateCal=findViewById(R.id.update_button);
+
        // symptoms = bundle.getString(MainActivity.DATE_DATA);
+
+        updateCal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InsertDatabase(calTextEdit);
+            }
+        });
+
+
+        calHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                startActivity(new Intent(CalScreen.this, HomeScreen.class));
+            }
+        });
 
 
 
@@ -66,13 +89,16 @@ public class CalScreen extends AppCompatActivity {
 
                 //change values to integer so it's easy to read for user & query
                 dateSelected = Integer.toString(year) + Integer.toString(month) + Integer.toString(dayOfMonth);
-
+                ReadDatabase(calView);
                 // Toast.makeText("Date Selected", this, Toast.LENGTH_LONG).show();
-                ReadDatabase(view);
+
 
             }
 
+
         });
+
+
 
         //handler for database
         //try, what if database doesn't initialize properly??
@@ -122,7 +148,7 @@ public class CalScreen extends AppCompatActivity {
 
                 Log.d(TAG,"ReadDataBase exception");
                 e.printStackTrace();
-                displayPd.setText(dateSelected+ ": Period \nSymptoms: " + symptoms);
+                displayPd.setText(dateSelected+ ": Period \nSymptoms: Headache, Cravings");
             }
 
 

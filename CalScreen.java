@@ -1,6 +1,11 @@
 package com.example.finalproject;
 
 
+/*Name was changed from Calendar.java to avoid confusion
+or errors when calling to Calender class in java
+*/
+
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
